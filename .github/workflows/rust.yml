@@ -2,13 +2,8 @@ name: Rust
 
 on:
   push:
-    branches: [ master ]
-    paths:
-      - 'bin/**'
-  pull_request:
-    branches: [ master ]
-    paths:
-      - 'bin/**'
+    tags:
+      - v*
 
 defaults:
   run:
@@ -26,10 +21,8 @@ jobs:
     - name: Run tests
       run: cargo test --verbose
     - name: Build release
-      if: ${{ github.event == 'push' && success() }}
       run: cargo build --release --verbose
     - name: Release built binary
       uses: yakuhzi/action-release@v1.2.0
-      if: ${{ github.event == 'push' && success() }}
       with:
         file: bin/target/release/bean-copy-txn
