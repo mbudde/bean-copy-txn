@@ -2,6 +2,8 @@ if exists("b:did_ftplugin") && b:did_ftplugin != 1
     finish
 endif
 
+let s:bean_copy_txn_exec = expand("<sfile>:h") . '/../../bin/target/release/bean-copy-txn'
+
 function! s:insert_transaction(result)
     let insert_lnr = line('.')
     let insert_parts = split(getline(insert_lnr), ' ')
@@ -15,7 +17,7 @@ function! s:insert_transaction(result)
         let parts[1] = date
         call setline(insert_lnr, join(parts[1:], ' '))
     else
-        let tx = system('bean-copy-txn ' . expand('%:S') . ' ' . parts[0])
+        let tx = system([s:bean_copy_txn_exec, expand('%'), parts[0]])
         let lines = split(tx, "\n")
         let first_line = substitute(lines[0], '^[^ ]\+', date, "")
         call cursor(insert_lnr, 0)
@@ -27,7 +29,7 @@ function! s:insert_transaction(result)
 endfunction
 
 function! s:transaction_lines()
-    let lines = reverse(systemlist('bean-copy-txn ' . expand('%:S')))
+    let lines = reverse(systemlist([s:bean_copy_txn_exec, expand('%')]))
     call insert(lines, '-1 ' . strftime("%Y-%m-%d") . ' * ""')
     return lines
 endfunction
