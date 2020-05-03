@@ -26,10 +26,10 @@ jobs:
     - name: Run tests
       run: cargo test --verbose
     - name: Build release
-      if: github.event == 'push' && success()
+      if: ${{ github.event == 'push' && success() }}
       run: cargo build --release --verbose
     - name: Release built binary
       uses: yakuhzi/action-release@v1.2.0
-      if: github.event == 'push' && success()
+      if: ${{ github.event == 'push' && success() }}
       with:
         file: bin/target/release/bean-copy-txn
