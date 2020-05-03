@@ -3,6 +3,7 @@ use std::path::Path;
 use beancount_core as bc;
 use beancount_parser::parse;
 
+
 fn main() {
     let filename = std::env::args().nth(1).expect("filename argument");
     let line = std::env::args().nth(2).and_then(|s| s.parse().ok());
