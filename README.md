@@ -12,4 +12,5 @@ transactions with fuzzy search via [fzf](https://github.com/junegunn/fzf/).
 
 With [vim-plug](https://github.com/junegunn/vim-plug/):
 
-  Plug 'mbudde/bean-copy-txn', { 'rtp': 'vim', 'do': 'cd bin && cargo build --release' }
+    Plug 'mbudde/bean-copy-txn', { 'rtp': 'vim', 'do': 'cd bin && cargo build --release' }
+
