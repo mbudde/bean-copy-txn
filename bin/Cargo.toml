@@ -1,0 +1,11 @@
+[package]
+name = "bean-copy-txn"
+version = "0.1.0"
+authors = ["Michael Budde <git@mbudde.dk>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+beancount-core = { git = "https://github.com/twilco/beancount" }
+beancount-parser = { git = "https://github.com/twilco/beancount" }
