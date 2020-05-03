@@ -3,6 +3,8 @@
 (Neo)vim plugin for copying previous [Beancount](http://furius.ca/beancount/)
 transactions with fuzzy search via [fzf](https://github.com/junegunn/fzf/).
 
+![Demo](https://github.com/mbudde/bean-copy-txn/raw/master/demo.gif)
+
 ## Dependencies
 
 - [fzf](https://github.com/junegunn/fzf/)
