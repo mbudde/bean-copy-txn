@@ -26,3 +26,5 @@ jobs:
       uses: yakuhzi/action-release@v1.2.0
       with:
         file: bin/target/release/bean-copy-txn
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
