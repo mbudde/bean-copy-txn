@@ -2,7 +2,7 @@ if exists("b:did_ftplugin") && b:did_ftplugin != 1
     finish
 endif
 
-let s:bean_copy_txn_exec = expand("<sfile>:h") . '/../../bin/target/release/bean-copy-txn'
+let s:bean_copy_txn_exec = expand("<sfile>:h") . '/../bin/target/release/bean-copy-txn'
 
 function! s:insert_transaction(result)
     let insert_lnr = line('.')
