@@ -14,9 +14,9 @@ transactions with fuzzy search via [fzf](https://github.com/junegunn/fzf/).
 
 With [vim-plug](https://github.com/junegunn/vim-plug/):
 
-    Plug 'mbudde/bean-copy-txn', { 'rtp': 'vim', 'do': './install.sh --build' }
+    Plug 'mbudde/bean-copy-txn', { 'do': './install.sh --build' }
 
 Or download pre-built binaries (only 64-bit linux):
 
-    Plug 'mbudde/bean-copy-txn', { 'rtp': 'vim', 'do': './install.sh --download' }
+    Plug 'mbudde/bean-copy-txn', { 'do': './install.sh --download' }
 
