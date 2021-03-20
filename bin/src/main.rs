@@ -1,20 +1,23 @@
 use std::path::Path;
 
+use anyhow::{anyhow, Context, Result};
+
 use beancount_core as bc;
 use beancount_parser::parse;
 
 
-fn main() {
-    let filename = std::env::args().nth(1).expect("filename argument");
+fn main() -> Result<()> {
+    let filename = std::env::args().nth(1).ok_or(anyhow!("Filename argument required"))?;
     let line = std::env::args().nth(2).and_then(|s| s.parse().ok());
 
     let id = std::cell::Cell::new(0);
-    print_transactions(Path::new(&filename), line, &id);
+    print_transactions(Path::new(&filename), line, &id)
 }
 
-fn print_transactions(filename: &Path, tx_id: Option<usize>, id: &std::cell::Cell<usize>) {
-    let unparsed_file = std::fs::read_to_string(filename).expect(&format!("cannot read file {}", filename.display()));
-    let ledger = parse(&unparsed_file);
+fn print_transactions(filename: &Path, tx_id: Option<usize>, id: &std::cell::Cell<usize>) -> Result<()> {
+    let unparsed_file = std::fs::read_to_string(filename)
+            .with_context(|| format!("Failed to read Beancount file {}", filename.display()))?;
+    let ledger = parse(&unparsed_file)?;
     for dir in ledger.directives {
         match dir {
             bc::Directive::Transaction(tx) => {
@@ -38,10 +41,12 @@ fn print_transactions(filename: &Path, tx_id: Option<usize>, id: &std::cell::Cel
                 let mut path = Path::new(filename).to_path_buf();
                 path.pop();
                 path.push(&*include_dir.filename);
-                let path = path.canonicalize().expect("could not canonicalize path");
-                print_transactions(&path, tx_id, id);
+                let path = path.canonicalize().context("Could not canonicalize include path")?;
+                print_transactions(&path, tx_id, id)?;
             }
             _ => {}
         }
     }
+
+    Ok(())
 }
