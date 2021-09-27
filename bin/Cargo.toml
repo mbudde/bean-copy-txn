@@ -7,6 +7,6 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-beancount-core = { path = "../../../../github/twilco/beancount/beancount-core" }
-beancount-parser = { path = "../../../../github/twilco/beancount/beancount-parser" }
+beancount-core = { git = "https://github.com/twilco/beancount" }
+beancount-parser = { git = "https://github.com/twilco/beancount" }
 anyhow = "1"
