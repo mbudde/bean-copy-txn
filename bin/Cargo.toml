@@ -1,6 +1,6 @@
 [package]
 name = "bean-copy-txn"
-version = "0.1.0"
+version = "0.2.2"
 authors = ["Michael Budde <git@mbudde.dk>"]
 edition = "2021"
 
